@@ -1,8 +1,9 @@
+import { Resume } from "../../components/Resume";
 
 export const Home = () => {
   return (
-      <div>
-        Meu conteúdo dsafafdsfsd
-      </div>
+    <>
+      <Resume />
+    </>
   );
 };

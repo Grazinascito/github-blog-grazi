@@ -1,5 +1,6 @@
 export const defaultTheme = {
   title: "#E7EDF4",
+  blue: "#3294F8",
   "blue-100": "#C4D4E3",
   "blue-200": "#AFC2D4",
   "blue-300": "#7B96B2",
