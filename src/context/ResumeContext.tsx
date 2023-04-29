@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 
-import { api } from "../services/axios";
+import { UserApi } from "../services/axios";
 
 export const ResumeContext = createContext({} as any);
 interface IresumeData {
@@ -17,7 +17,7 @@ export const ResumeProvider = ({ children }: any) => {
 
   const fetchResume = async () => {
     try {
-      const response = await api.get("/grazinascito");
+      const response = await UserApi.get("/grazinascito");
       const {
         name,
         followers,
