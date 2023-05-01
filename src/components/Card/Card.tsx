@@ -1,45 +1,24 @@
-import { useEffect, useState } from "react";
-import { IssuesApi } from "../../services/axios";
 import { CartWrapper, HeaderWrapper, TextWrapper, Wrapper } from "./Styled";
 import { dateFormatter } from "../../utils/formatter";
+import { IssuesData } from "../../pages/Home/Home";
 
-interface IssuesData {
-  created_at: string;
-  title: string;
-  body: string;
+interface IssuesDataProps {
+  issues: Array<IssuesData>;
+  onSearch: Function;
 }
 
-export const Card = () => {
-  const [issues, setIssues] = useState<IssuesData[]>([]);
-
-  const fetchIssues = async () => {
-    const response = await IssuesApi.get(
-      "grazinascito/github-blog-grazi/issues"
-    );
-
-    const cardsData = response.data.map((data: IssuesData) => {
-      return {
-        title: data.title,
-        created_at: data.created_at,
-        body: data.body,
-      };
-    });
-    console.log(cardsData, "fds");
-    setIssues(cardsData);
-  };
-
-  useEffect(() => {
-    fetchIssues();
-  }, []);
-
+export const Card = ({ issues, onSearch }: IssuesDataProps) => {
   const TEXT_MAX_LENGTH = 181;
 
   const textFormatter = (text: string) =>
     text.substring(0, TEXT_MAX_LENGTH).trim().concat("...");
 
+  const filteredIssues = onSearch();
+  const renderIssues = filteredIssues.length > 0 ? filteredIssues : issues;
+
   return (
     <CartWrapper>
-      {issues.map((issue) => {
+      {renderIssues.map((issue: IssuesData) => {
         return (
           <Wrapper>
             <HeaderWrapper>
