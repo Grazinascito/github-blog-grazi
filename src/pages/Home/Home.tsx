@@ -9,6 +9,12 @@ export interface IssuesData {
   body: string;
 }
 
+const styles = {
+  maxWidth: "86.4rem",
+  margin: "0 auto",
+  padding: "1.2rem",
+};
+
 export const Home = () => {
   const [issuesData, setIssuesData] = useState<IssuesData[]>([]);
   const [value, setValue] = useState("");
@@ -40,10 +46,10 @@ export const Home = () => {
   }, []);
 
   return (
-    <>
+    <div style={styles}>
       <Resume />
       <Search issues={issuesData} setValue={setValue} value={value} />
       <Card issues={issuesData} onSearch={onSearch} />
-    </>
+    </div>
   );
 };

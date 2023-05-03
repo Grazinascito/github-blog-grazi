@@ -17,18 +17,18 @@ export const Card = ({ issues, onSearch }: IssuesDataProps) => {
   const renderIssues = filteredIssues.length > 0 ? filteredIssues : issues;
 
   return (
-    <CartWrapper>
+    <Wrapper>
       {renderIssues.map((issue: IssuesData) => {
         return (
-          <Wrapper>
+          <CartWrapper>
             <HeaderWrapper>
               <h2>{issue.title}</h2>
               <span>{dateFormatter(issue.created_at)}</span>
             </HeaderWrapper>
             <TextWrapper>{textFormatter(issue.body)}</TextWrapper>
-          </Wrapper>
+          </CartWrapper>
         );
       })}
-    </CartWrapper>
+    </Wrapper>
   );
 };
