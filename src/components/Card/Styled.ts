@@ -19,6 +19,7 @@ export const CartWrapper = styled.div`
   margin: 0 auto;
   background-color: ${(props) => props.theme["blue-600"]};
   border-radius: 10px;
+  cursor: pointer;
 `;
 
 export const HeaderWrapper = styled.div`

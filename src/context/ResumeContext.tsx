@@ -27,7 +27,7 @@ export const ResumeProvider = ({ children }: any) => {
         description,
         html_url,
       } = response.data;
-      console.log(response.headers);
+
       const userObj: IresumeData = {
         name,
         followers,

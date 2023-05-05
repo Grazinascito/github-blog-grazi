@@ -7,9 +7,10 @@ export interface IssuesData {
   created_at: string;
   title: string;
   body: string;
+  number: number;
 }
 
-const styles = {
+export const styles = {
   maxWidth: "86.4rem",
   margin: "0 auto",
   padding: "1.2rem",
@@ -19,6 +20,8 @@ export const Home = () => {
   const [issuesData, setIssuesData] = useState<IssuesData[]>([]);
   const [value, setValue] = useState("");
 
+  const issuesUrl = "grazinascito/github-blog-grazi/issues";
+
   const onSearch = () => {
     const searchedIssues = issuesData.filter((issue) =>
       issue.title.toLowerCase().includes(value.toLowerCase())
@@ -27,15 +30,14 @@ export const Home = () => {
   };
 
   const fetchIssues = async () => {
-    const response = await IssuesApi.get(
-      "grazinascito/github-blog-grazi/issues"
-    );
+    const response = await IssuesApi.get(issuesUrl);
 
     const cardsData = response.data.map((data: IssuesData) => {
       return {
         title: data.title,
         created_at: data.created_at,
         body: data.body,
+        number: data.number,
       };
     });
     setIssuesData(cardsData);
